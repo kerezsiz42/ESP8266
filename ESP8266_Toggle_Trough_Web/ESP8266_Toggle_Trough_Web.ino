@@ -4,8 +4,8 @@
 ESP8266WebServer server(80);
 
 void setup(void) {
-  const char* ssid = "your_ssid";
-  const char* password = "your_password";
+  const char* ssid = "";
+  const char* password = "";
   
   pinMode(LED_BUILTIN, OUTPUT);
   Serial.begin(115200);
@@ -23,7 +23,7 @@ void setup(void) {
   Serial.println(WiFi.localIP());
   
   server.on("/", []() {
-      server.send(200, "text/html", "<meta name='viewport' content='width=device-width, initial-scale=1'><h1>Toggle LED_BUILTIN</h1><button id='button' onclick='toggle()'>Toggle</button><script>const toggle=()=>{fetch('http://192.168.0.179/toggle');}</script>");
+      server.send(200, "text/html", "<meta name='viewport' content='width=device-width, initial-scale=1'><style>body{text-align:center;}button{padding:20px;}</style><h1>Toggle LED_BUILTIN</h1><button id='button' onclick='toggle()'>Toggle</button><script>const toggle=()=>{fetch('http://192.168.0.179/toggle');}</script>");
   });
 
   server.on("/toggle", []() {
